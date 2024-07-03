@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "bin\\Release\\net8.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/13f0b261-fc44-4bde-89f2-494b57517bce/resourceGroups/FormAssignmentDatabase/providers/Microsoft.Web/sites/formdatabase"
+}
