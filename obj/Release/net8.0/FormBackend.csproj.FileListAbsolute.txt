@@ -135,3 +135,4 @@ C:\Users\Aiden\Desktop\Codestack\Documents\Internship\FormBackend\obj\Release\ne
 C:\Users\Aiden\Desktop\Codestack\Documents\Internship\FormBackend\obj\Release\net8.0\FormBackend.pdb
 C:\Users\Aiden\Desktop\Codestack\Documents\Internship\FormBackend\obj\Release\net8.0\FormBackend.genruntimeconfig.cache
 C:\Users\Aiden\Desktop\Codestack\Documents\Internship\FormBackend\obj\Release\net8.0\ref\FormBackend.dll
+C:\Users\Aiden\Desktop\Codestack\Documents\Internship\FormBackend\obj\Release\net8.0\FormBackend.sourcelink.json

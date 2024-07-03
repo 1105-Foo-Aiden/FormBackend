@@ -26,10 +26,7 @@ namespace FormBackend.Services{
             }
             return _context.SaveChanges() != 0;
         }
-        public bool DoesUserExist(string email){
-            return _context.UserInfo.SingleOrDefault(u => u.Email == email) != null;
-        }
-
+        public bool DoesUserExist(string email)=> _context.UserInfo.SingleOrDefault(u => u.Email == email) != null;
         public UserDTO Converter(UserModel user){
             return new UserDTO{
                 ID = user.ID,
@@ -47,7 +44,7 @@ namespace FormBackend.Services{
 
         public IEnumerable<UserDTO> GetUsers(){
             IEnumerable<UserModel> users = _context.UserInfo;
-            return users.Select(user => Converter(user)).ToList();
+            return users.Select(Converter).ToList();
         }
         public PassDTO HashPassword(string passowrd){
             PassDTO newHashPassword = new();
@@ -61,10 +58,9 @@ namespace FormBackend.Services{
             newHashPassword.Hash = hash;
             return newHashPassword;
         }
-
-        public UserModel GetUserByUsername(string email){
-            return _context.UserInfo.SingleOrDefault(u => u.Email == email);
-        }
+        
+        public UserModel GetUserByUsername(string email) => _context.UserInfo.SingleOrDefault(u => u.Email == email);
+        public UserDTO GetUserByUsernameEndoint(string email) => Converter(_context.UserInfo.SingleOrDefault(u => u.Email == email));
 
         public bool VerifyUsersPassword(string passowrd, string storedHash, string storedSalt){
             byte[] SaltBytes = Convert.FromBase64String(storedSalt);
@@ -113,14 +109,15 @@ namespace FormBackend.Services{
                 return true;
             }else return false;
         }
+        private UserModel GetUserById(int id) => _context.UserInfo.SingleOrDefault(u => u.ID == id);
         public bool EditUser(UpdateUserDTO user){
-            UserModel foundUser = GetUserByUsername(user.Username);
+            UserModel foundUser = GetUserById(user.id);
             if(foundUser != null){
-                foundUser.ID = foundUser.ID;
                 foundUser.Email = user.Username;
+                foundUser.FirstName = user.FirstName;
+                foundUser.LastName = user.LastName;
+                foundUser.DOB = user.DOB;
                 foundUser.IsAdmin = user.IsAdmin;
-                foundUser.Address = user.Address ;
-                foundUser.PhoneNumber = user.PhoneNumber;
                 _context.Update(foundUser);
             }
             return _context.SaveChanges() != 0;

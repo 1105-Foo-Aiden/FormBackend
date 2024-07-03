@@ -24,7 +24,8 @@ namespace FormBackend.Controllers{
 
         [HttpGet]
         [Route("GetUserByUsername/{username}")]
-        public UserModel GetUserByUsername(string username) => _service.GetUserByUsername(username);
+        public UserDTO GetUserByUsername(string username) => _service.GetUserByUsernameEndoint(username);
+
         [HttpPut]
         [Route("ResetPassword")]
         public IActionResult ResetPassword([FromBody] ResetPassDTO newPass) => _service.ResetPassword(newPass) ? Ok("Password reset") : BadRequest("Error resetting password");
